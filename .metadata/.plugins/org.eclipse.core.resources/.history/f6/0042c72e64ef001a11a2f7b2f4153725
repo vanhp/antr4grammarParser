@@ -1,0 +1,74 @@
+package expression;
+
+import java.util.List;
+
+import org.antlr.v4.runtime.Token;
+
+import antlr.ExprBaseVisitor;
+import antlr.ExprParser.AdditionContext;
+import antlr.ExprParser.DeclarationContext;
+import antlr.ExprParser.MultiplicationContext;
+import antlr.ExprParser.NumberContext;
+import antlr.ExprParser.VariableContext;
+
+public class AntlrToExpression extends ExprBaseVisitor<Expression> {
+	
+	/*
+	 * Visit node in the AST using breadth first search
+	 * from top (root) node down to the leaf node
+	 * going from leftmost node  to rightmost node which
+	 * must be correspond to the the input sequence of tokens
+	 * to the program
+	 * */
+	private List<String> vars; //store all variables
+	
+	/*
+	 * store semantic error in the codes
+	 * 1. declare more than once
+	 * 2. refer to undeclared variable
+	 * */
+	private List<String> semanticErrors;
+	
+	@Override
+	public Expression visitDeclaration(DeclarationContext ctx) {
+		
+		Token idToken = ctx.ID().getSymbol();
+		int linenumb = idToken.getLine(); // line of the token
+		int colnumb = idToken.getCharPositionInLine()+1; // to start from 1 istead of 0
+		String id = ctx.getChild(0).getText();
+		if(vars.contains(id)) { // duplicate declaration
+			semanticErrors.add("Error: variable" + id + "already declared C" + linenumb + ", " + colnumb + ")");
+		}
+		else {
+			vars.add(id);
+		}
+		
+	}
+
+	@Override
+	public Expression visitNumber(NumberContext ctx) {
+		String numText = ctx.getChild(0).getText();
+		int num = Integer.parseInt(numText);
+		return new Number(num);
+	}
+
+	@Override
+	public Expression visitVariable(VariableContext ctx) {
+		// TODO Auto-generated method stub
+		return super.visitVariable(ctx);
+	}
+
+	@Override
+	public Expression visitMultiplication(MultiplicationContext ctx) {
+		// TODO Auto-generated method stub
+		return super.visitMultiplication(ctx);
+	}
+
+	@Override
+	public Expression visitAddition(AdditionContext ctx) {
+		// TODO Auto-generated method stub
+		return super.visitAddition(ctx);
+	}
+
+	
+}

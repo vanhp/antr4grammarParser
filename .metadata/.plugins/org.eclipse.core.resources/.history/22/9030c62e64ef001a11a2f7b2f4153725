@@ -1,0 +1,14 @@
+package expression;
+
+import antlr.ExprBaseVisitor;
+import antlr.ExprParser.ProgaramContext;
+
+public class AntlrToProgram extends ExprBaseVisitor<Program>{
+
+	@Override
+	public Program visitProgaram(ProgaramContext ctx) {
+		// TODO Auto-generated method stub
+		return super.visitProgaram(ctx);
+	}
+
+}

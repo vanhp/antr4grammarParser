@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="antlr.ExprBaseVisitor"/>
+    <fullyQualifiedTypeName name="antlr.ExprParser"/>
+    <fullyQualifiedTypeName name="org.antlr.v4.runtime.CharStreams"/>
+    <fullyQualifiedTypeName name="org.antlr.v4.runtime.CharStream"/>
+    <fullyQualifiedTypeName name="java.io.IOException"/>
+    <fullyQualifiedTypeName name="antlr.ExprLexer"/>
+    <fullyQualifiedTypeName name="org.antlr.v4.runtime.CommonTokenStream"/>
+    <fullyQualifiedTypeName name="org.antlr.v4.runtime.tree.ParseTree"/>
+    <fullyQualifiedTypeName name="expression.AntlrToProgram"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="java.util.HashMap"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="expression.ExpressionProcessor"/>
+    <fullyQualifiedTypeName name="org.antlr.v4.runtime.BaseErrorListener"/>
+    <fullyQualifiedTypeName name="org.antlr.v4.runtime.Parser"/>
+    <fullyQualifiedTypeName name="java.util.Collections"/>
+    <fullyQualifiedTypeName name="org.antlr.v4.runtime.Token"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="expression.SyntaxErrorListener"/>
+    <fullyQualifiedTypeName name="expression.Program"/>
+    <fullyQualifiedTypeName name="expression.VariableDeclaration"/>
+    <fullyQualifiedTypeName name="expression.Variable"/>
+    <fullyQualifiedTypeName name="expression.Addition"/>
+    <fullyQualifiedTypeName name="expression.Multiplication"/>
+    <fullyQualifiedTypeName name="expression.Expression"/>
+</qualifiedTypeNameHistroy>

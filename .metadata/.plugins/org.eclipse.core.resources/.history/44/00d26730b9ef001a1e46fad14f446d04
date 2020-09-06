@@ -1,0 +1,106 @@
+package expression;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.antlr.v4.runtime.Token;
+
+import antlr.ExprBaseVisitor;
+import antlr.ExprParser.AdditionContext;
+import antlr.ExprParser.DeclarationContext;
+import antlr.ExprParser.MultiplicationContext;
+import antlr.ExprParser.NumberContext;
+import antlr.ExprParser.VariableContext;
+
+public class AntlrToExpression extends ExprBaseVisitor<Expression> {
+	
+	/*
+	 * Visit node in the AST using breadth first search
+	 * from top (root) node down to the leaf node
+	 * going from leftmost node  to rightmost node which
+	 * must be correspond to the the input sequence of tokens
+	 * to the program
+	 * */
+	private List<String> vars; //store all variables
+	
+	/*
+	 * store semantic error in the codes
+	 * 1. declare more than once
+	 * 2. refer to undeclared variable
+	 * */
+	private List<String> semanticErrors;
+	
+	public AntlrToExpression(List<String> sem) {
+		vars = new ArrayList<>();
+		semanticErrors = sem;
+	}
+	
+	@Override
+	public Expression visitDeclaration(DeclarationContext ctx) {
+		/**
+		 * the Declaration node of the AST have 3 children that 
+		 * are parts of the node that must be accounted for
+		 * ID,INT,value(5)
+		 */
+		 
+		Token idToken = ctx.ID().getSymbol();
+		int linenumb = idToken.getLine(); // line of the token
+		int colnumb = idToken.getCharPositionInLine()+1; // to start from 1 istead of 0
+		String id = ctx.getChild(0).getText();
+		if(vars.contains(id)) { // duplicate declaration
+			semanticErrors.add("Error: variable" + id + "already declared (" + linenumb + ", " + colnumb + ")");
+		}
+		else {
+			vars.add(id);
+		}
+		String type = ctx.getChild(2).getText();
+		int value = Integer.parseInt(ctx.NUM().getText());
+		
+		return new VariableDeclaration(id,type,value);
+	}
+
+	@Override
+	public Expression visitNumber(NumberContext ctx) {
+		String numText = ctx.getChild(0).getText();
+		int num = Integer.parseInt(numText);
+		return new Number(num);
+	}
+
+	@Override
+	public Expression visitVariable(VariableContext ctx) {
+		Token idToken = ctx.ID().getSymbol();
+		int linenumb = idToken.getLine(); // line of the token
+		int colnumb = idToken.getCharPositionInLine()+1; // to start from 1 istead of 0
+		String id = ctx.getChild(0).getText();
+		if(!vars.contains(id)) { // not declaration variable
+			semanticErrors.add("Error: variable" + id + "not declared (" + linenumb + ", " + colnumb + ")");
+		}
+		
+		return new Variable(id);
+	}
+
+	@Override
+	public Expression visitMultiplication(MultiplicationContext ctx) {
+		/* this node has 3 children L,op,R
+		 * recursively visit all of the child in the L
+		 * then all child in the R
+		 *  */
+		Expression leftChild = visit(ctx.getChild(0));
+		Expression rightChild = visit(ctx.getChild(2));
+		return new Multiplication(leftChild,rightChild);
+	}
+
+	@Override
+	public Expression visitAddition(AdditionContext ctx) {
+		/* this node has 3 children L,op,R
+		 * recursively visit all of the child in the L
+		 * then all child in the R
+		 *  */
+		Expression leftChild = visit(ctx.getChild(0));
+		Expression rightChild = visit(ctx.getChild(2));
+		return new Addition(leftChild,rightChild);
+		
+	}
+
+	
+}

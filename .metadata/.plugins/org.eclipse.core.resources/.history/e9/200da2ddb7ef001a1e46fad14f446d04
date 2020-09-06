@@ -1,0 +1,17 @@
+package expression;
+
+public class Addition extends Expression {
+
+	public Expression left;
+	public Expression right;
+	
+	public Addition(Expression l,Expression r) {
+		left = l;
+		right = r;
+	}
+	
+	@Override
+	public String toString() {
+		return left.toString() + "+" + right.toString();
+	}
+}

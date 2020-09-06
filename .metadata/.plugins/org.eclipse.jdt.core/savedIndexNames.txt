@@ -1,0 +1,6 @@
+INDEX VERSION 1.131+/home/vanh/Development/Learn/language/antlr_ex/.metadata/.plugins/org.eclipse.jdt.core
+646308851.index
+3529004359.index
+2482522152.index
+3086748211.index
+3174280349.index

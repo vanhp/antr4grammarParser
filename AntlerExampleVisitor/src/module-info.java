@@ -1,0 +1,3 @@
+module AntlerExampleVisitor {
+	requires antlr;
+}

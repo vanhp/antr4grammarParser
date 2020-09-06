@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 2 elements from project &apos;AntlrExampleAction&apos;&#x0A;- Original project: &apos;AntlrExampleAction&apos;&#x0A;- Original elements:&#x0A;     expression.AntlrToExpression.java&#x0A;     expression.AntlrToProgram.java" description="Delete elements" element1="/src=/org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY=/AntlrExampleAction\/lib=/&lt;expression{AntlrToExpression.java" element2="/src=/org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY=/AntlrExampleAction\/lib=/&lt;expression{AntlrToProgram.java" elements="2" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1599353858862" subPackages="false" version="1.0"/>
+</session>

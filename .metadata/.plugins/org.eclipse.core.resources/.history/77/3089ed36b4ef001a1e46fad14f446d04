@@ -1,0 +1,18 @@
+package expression;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class ExpressionProcessor {
+	List<Expression> list;
+	
+	public Map<String,Integer> values; // symbol table of variable
+	
+	public ExpressionProcessor(List<Expression> list) {
+		this.list = list;
+		values = new HashMap<>();
+	}
+	
+	
+}
